@@ -3,6 +3,7 @@ import { Route, Switch, Link } from "react-router-dom";
 import Login from "./pages/Login";
 import FriendsList from "./pages/FriendsList";
 import ProtectedRoute from "./pages/ProtectedRoute";
+import AddFriend from "./pages/AddFriend";
 import "./App.css";
 
 function App() {
@@ -15,14 +16,18 @@ function App() {
         <li>
           <Link to="/protected">Protected Page </Link>
         </li>
+        <li>
+          <Link to="/add-new-friend">Add Friend</Link>
+        </li>
       </nav>
       <Switch>
-        <ProtectedRoute exact path="/protected" component={FriendsList} />
-        <Route
-          path="/login"
-          component={Login}
-          render={(props) => <Login {...props} />}
-        />
+        <ProtectedRoute exact path="/protected">
+          <FriendsList />
+        </ProtectedRoute>
+        <ProtectedRoute exact path="/add-new-friend">
+          <AddFriend />
+        </ProtectedRoute>
+        <Route path="/login" component={Login} />
         <Route component={Login} />
       </Switch>
     </div>
